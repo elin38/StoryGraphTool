@@ -1,58 +1,230 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "Exploration of the city-State Gridania",
+    "Credits": "Created by Ethan Lin (elin38@ucsc.edu) Based on the work of Adam Smith (amsmith@ucsc.edu).",
+    "InitialLocation": "Gridania Aetheryte Plaza",
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
+        "Gridania Aetheryte Plaza": {
+            "Body": "Gridania Aetheryte Plaza. The most popular gathering place in all of Gridania. In the center, a gigantic teleportation crystal floats, and around it are numerous travelers, merchants, crasftsmen, and musicians.",
             "Choices": [
                 {
-                    "Text": "South",
-                    "Target": "Porter"
-                }
-            ]
-        },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Kresge"
+                    "Text": "West",
+                    "Target": "Carpenters' Guild"
                 },
                 {
                     "Text": "South",
-                    "Target": "Rachel Carson"
+                    "Target": "Chocobo Stables"
+                },
+                {
+                    "Text": "Northern Gate",
+                    "Target": "Rosewood Stalls"
                 }
             ]
         },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
+        "Rosewood Stalls": {
+            "Body": "Rosewood Stalls. The center of trade in the city-state of Gridania. You find yourself in the center of rows and rows of merchant stalls. Everything you can imagine is sold here. from armor, to potions, to monster parts.",
+            "Choices": [
+                {
+                    "Text": "West",
+                    "Target": "Leatherworkers' Guild"
+                },
+                {
+                    "Text": "Northern Gate",
+                    "Target": "Gridania Aetheryte Plaza"
+                }
+            ]
+        },
+        "Chocobo Stables": {
+            "Body": "Chocobo Stables. These yellow, feathered companions are one of the most reliable forms of transport. The chocobos that are used for transportation are held here to rest.",
             "Choices": [
                 {
                     "Text": "North",
-                    "Target": "Porter"
+                    "Target": "Gridania Aetheryte Plaza"
                 },
                 {
                     "Text": "South",
-                    "Target": "Oakes"
+                    "Target": "The Roost"
                 }
             ]
         },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
+        "The Roost": {
+            "Body": "The Roost. Gridania's foremost tavern and the most popular gathering place for adventurers. The Roost also provides hotel services if you are in need of a bed.",
             "Choices": [
                 {
                     "Text": "North",
-                    "Target": "Rachel Carson"
+                    "Target": "Chocobo Stables"
                 },
                 {
                     "Text": "South",
-                    "Target": "Beyond"
+                    "Target": "Adventurers' Guild"
                 }
             ]
         },
-        "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
+        "Adventurers' Guild": {
+            "Body": "Adventurers' Guild. The guild built by and for adventurers. Quests are completed by adventurers for a commission and acts as a way for adventurers to earn a living.",
+            "Clue": "X _ _",
+            "Choices": [
+                {
+                    "Text": "North",
+                    "Target": "The Roost"
+                },
+                {
+                    "Text": "Talk to Guild Receptionist",
+                    "Target": "Receptionist"
+                },
+                {
+                    "Text": "Talk to Guild Receptionist",
+                    "Target": "Receptionist(ongoing quest)"
+                }
+            ]
+        },
+        "Receptionist": {
+            "Body": "Receptionist: Hello adventurer! I am in need of someone to deliver this package to the Carpenters' Guild. As a reward, we will provide you with a \"Northern Gate Pass\".",
+            "Choices": [
+                {
+                    "Text": "Accept",
+                    "Target": "Accept"
+                },
+                {
+                    "Text": "Decline",
+                    "Target": "Decline"
+                }
+            ]
+        },
+        "Receptionist(ongoing quest)": {
+            "Body": "Receptionist: Remember, deliver this package to the Carpenters' Guild. The Carpenters' Guild is right next to the Aetheryte Plaza",
+            "Choices": [
+                {
+                    "Text": "Back",
+                    "Target": "Adventurers' Guild"
+                }
+            ]
+        },
+        "Accept": {
+            "Body": "Receptionist: Thank you so much for accepting! I wish you the best. See you soon!",
+            "Choices": [
+                {
+                    "Text": "Back",
+                    "Target": "Adventurers' Guild"
+                }
+            ]
+        },
+        "Decline": {
+            "Body": "Receptionist: Ah, thats a shame. Let me know if you change your mind.",
+            "Choices": [
+                {
+                    "Text": "Back",
+                    "Target": "Adventurers' Guild"
+                }
+            ]
+        },
+        "Carpenters' Guild": {
+            "Body": "Carpenters' Guild. The art of woodworking. From things as simple as a chair, to something as complicated as a magical staff. Those that are a part of the Carpenters' Guild boast some of the best skills in the world.",
+            "Clue": "_ I _",
+            "Choices": [
+                {
+                    "Text": "North",
+                    "Target": "The Adders' Nest"
+                },
+                {
+                    "Text": "East",
+                    "Target": "Gridania Aetheryte Plaza"
+                },
+                {
+                    "Text": "Deliver Package",
+                    "Target": "Delivered Package"
+                }
+            ]
+        },
+        "Delivered Package": {
+            "Body": "Carpenters' Guild Receptionist: Ah adventurer, I see you have brought the package over for us. Thank you so much! As promised, here is the \"Northern Gate Pass\"",
+            "Choices": [
+                {
+                    "Text": "Back",
+                    "Target": "Carpenters' Guild"
+                }
+            ]
+        },
+        "The Adders' Nest": {
+            "Body": "The Adders' Nest. The homebase of Gridania's Grand Company. Those within the Order of the Twin Adder have been tasked with the defence of Gridania's peace and prosperity.",
+            "Choices": [
+                {
+                    "Text": "South",
+                    "Target": "Carpenters' Guild"
+                },
+                {
+                    "Text": "Northern Gate",
+                    "Target": "Leatherworkers' Guild"
+                }
+                
+            ]
+        },
+        "Leatherworkers' Guild": {
+            "Body": "Leatherworkers' Guild. Are you in need of armor? Well you have come to the right place. The Leatherworkers' Guild are renowned for their expertise in light armor as well as leather-based accessories.",
+            "Clue": "_ _ V",
+            "Choices": [
+                {
+                    "Text": "East",
+                    "Target": "Rosewood Stalls"
+                },
+                {
+                    "Text": "West",
+                    "Target": "Mih Khetto's Amphitheatre"
+                },
+                {
+                    "Text": "Northern Gate",
+                    "Target": "The Adders' Nest"
+                }
+            ]
+        },
+        "Mih Khetto's Amphitheatre": {
+            "Body": "Mih Khetto's Amphitheatre. Come one come all! The famed minstrel Mih Khetto built this open-air amphitheatre for all to enjoy the beauty of performing arts.",
+            "Choices": [
+                {
+                    "Text": "East",
+                    "Target": "Leatherworkers' Guild"
+                },
+                {
+                    "Text": "South",
+                    "Target": "Stillglade Fane"
+                },
+                {
+                    "Text": "West",
+                    "Target": "Botanists' Guild"
+                }
+            ]
+        },
+        "Botanists' Guild": {
+            "Body": "Botanists' Guild. Gridania is situated in the middle of the thick forests of the Black Shroud. Thus, those who work closely with the fauna have been blessed with incredible skills.",
+            "Choices": [
+                {
+                    "Text": "East",
+                    "Target": "Mih Khetto's Amphitheatre"
+                },
+                {
+                    "Text": "South",
+                    "Target": "Stillglade Fane"
+                }
+            ]
+        },
+        "Stillglade Fane": {
+            "Body": "Stillglade Fane. The birthplace of the White Mages. The scent of magic fill the air as you see many conjurers, adorned with white robes, studying and meditating. Out of the corner of your eye you can see a stone, emitting a blue glow.",
+            "Choices": [
+                {
+                    "Text": "Northeast",
+                    "Target": "Mih Khetto's Amphitheatre"
+                },
+                {
+                    "Text": "Northwest",
+                    "Target": "Botanists' Guild"
+                },
+                {
+                    "Text": "Glowing Stone",
+                    "Target": "Glowing Stone"
+                }
+            ]
+        },
+        "Glowing Stone": {
+            "Body": "Hear, feel, think..."
         }
     }
 }

@@ -1,30 +1,73 @@
 class Start extends Scene {
     create() {
-        //console.log(this.engine.storyData.InitialLocation);
-        this.engine.setTitle(this.engine.storyData.Title); // TODO: replace this text using this.engine.storyData to find the story title
+        this.engine.setTitle(this.engine.storyData.Title);
         this.engine.addChoice("Begin the story");
     }
 
     handleChoice() {
-        this.engine.gotoScene(Location, this.engine.storyData.InitialLocation); // TODO: replace this text by the initial location of the story
+        this.engine.gotoScene(Location, this.engine.storyData.InitialLocation); 
     }
 }
 
+//flags and checks
+let unlockedNorthern = false;
+let hasQuest = false;
+
 class Location extends Scene {
     create(key) {
-        let locationData = this.engine.storyData.Locations[key]; // TODO: use `key` to get the data object for the current story location
-        //console.log(locationData.Body);
-        this.engine.show(locationData.Body); // TODO: replace this text by the Body of the location data
-        
-        if(locationData.Choices) { // TODO: check if the location has any Choices
-            for(let choice of locationData.Choices) { // TODO: loop over the location's Choices
-                //console.log(choice);
-                this.engine.addChoice(choice.Text, choice); // TODO: use the Text of the choice
-                // TODO: add a useful second argument to addChoice so that the current code of handleChoice below works
-
+        let locationData = this.engine.storyData.Locations[key]; //use `key` to get the data object for the current story location
+        this.engine.show(locationData.Body);
+        if(locationData.Choices) { //check if the location has any Choices
+            if(locationData.Clue) {
+                let roll = Math.floor(Math.random() * 10);
+                if (roll < 3) {
+                    this.engine.show("Your vision suddenly blurs and the symbols: \"" + locationData.Clue + "\" suddenly appear in your mind.");
+                }
+            }
+            for(let choice of locationData.Choices) { //loop over the location's Choices 
+                if(key == "Accept") { //if player accepted the quest
+                    hasQuest = true;
+                    this.engine.addChoice(choice.Text, choice); //use the Text of the choice
+                }
+                else if (key == "Adventurers' Guild") {
+                    if(!hasQuest) { //depending on if the player accepted the quest, the receptionist will say different things
+                        if (choice.Target != "Receptionist(ongoing quest)") { 
+                            this.engine.addChoice(choice.Text, choice);
+                        }
+                    } else {
+                        if (choice.Target != "Receptionist") {
+                            this.engine.addChoice(choice.Text, choice); //use the Text of the choice
+                        }
+                    }
+                }
+                else if (key == "Gridania Aetheryte Plaza" || key == "The Adders' Nest") {
+                    if(!unlockedNorthern) { //checks if player has unlocked the northerngate
+                        if (choice.Text != "Northern Gate") {
+                            this.engine.addChoice(choice.Text, choice);
+                        }
+                    } else {
+                        this.engine.addChoice(choice.Text, choice);
+                    } 
+                }
+                else if (key == "Carpenters' Guild") {
+                    if (!hasQuest) { //check to see if quest is activated
+                        if (choice.Text != "Deliver Package") {
+                            this.engine.addChoice(choice.Text, choice);
+                        }
+                    } else {
+                        this.engine.addChoice(choice.Text, choice); 
+                    }
+                }
+                else if (key == "Delivered Package") { //once the quest is complete, unlock new area
+                    unlockedNorthern = true;
+                    this.engine.addChoice(choice.Text, choice);
+                }
+                else {
+                    this.engine.addChoice(choice.Text, choice);
+                }
             }
         } else {
-            this.engine.addChoice("The end.")
+            this.engine.addChoice("Touch Stone.")
         }
     }
 
@@ -33,16 +76,31 @@ class Location extends Scene {
             this.engine.show("&gt; "+choice.Text);
             this.engine.gotoScene(Location, choice.Target);
         } else {
-            this.engine.gotoScene(End);
+            this.engine.gotoScene(Crystal);
         }
     }
 }
 
 class End extends Scene {
     create() {
+        this.engine.show("Congratulations! Thank you for exploring the city of Gridania with me. This of course was based on the MMORPG Final Fantasy XIV.");
         this.engine.show("<hr>");
         this.engine.show(this.engine.storyData.Credits);
     }
+}
+
+
+class Crystal extends Location {
+    create() {
+        let pass = prompt("What do the symbols say?");
+        console.log(pass);
+        if (pass == "XIV" || pass == "X I V") {
+            this.engine.gotoScene(End);
+        } else {
+            this.engine.show("You vision distorts as you suddenly find yourself back in a familar place. Perhaps visiting the guilds again may prove helpful...");
+            this.engine.gotoScene(Location, "Stillglade Fane");
+        }
+    } 
 }
 
 Engine.load(Start, 'myStory.json');
